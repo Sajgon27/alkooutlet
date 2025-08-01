@@ -1,0 +1,57 @@
+@use "./variables" as *;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin swiper-btn {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba($black, 0.15);
+  background-color: $white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: $black;
+  img {
+    width: 24px;
+    filter: brightness(0) saturate(100%) invert(43%) sepia(22%) saturate(1002%)
+      hue-rotate(38deg) brightness(96%) contrast(83%);
+  }
+  &:hover {
+    border-color: $green;
+    background-color: $green;
+    img {
+      filter: brightness(0) saturate(100%) invert(100%) sepia(0%)
+        saturate(7500%) hue-rotate(301deg) brightness(107%) contrast(99%);
+    }
+  }
+
+  &:focus {
+    border: 1px solid $green;
+  }
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (min-width: $breakpoint-mobile) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (min-width: $breakpoint-tablet) {
+      @content;
+    }
+  } @else if $breakpoint == tablet-horizontal {
+    @media (min-width: $breakpoint-tablet-horizontal) {
+      @content;
+    }
+  } @else if $breakpoint == desktop {
+    @media (min-width: $breakpoint-desktop) {
+      @content;
+    }
+  }
+}

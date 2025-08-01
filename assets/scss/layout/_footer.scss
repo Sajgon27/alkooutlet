@@ -1,0 +1,179 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.footer {
+  border-top: 1px solid $gray;
+  padding: 50px 0;
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    margin-bottom: $space-lg;
+
+    @include respond-to(tablet-horizontal) {
+      flex-direction: row;
+      gap: 128px;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    max-width: 520px;
+
+    @include respond-to(tablet-horizontal) {
+      width: 40%;
+    }
+
+    a {
+      display: flex;
+
+      img {
+        max-width: 160px;
+        height: auto;
+        display: block;
+      }
+    }
+  }
+
+  &__description {
+    margin-top: $space-md;
+    p {
+      margin: 0;
+      color: $light-black;
+    }
+  }
+
+  &__social {
+    margin-top: $space-lg;
+    &-link {
+      display: flex;
+      align-items: center;
+      gap: $space-xs;
+
+      text-decoration: none;
+      transition: color 0.3s ease;
+      span {
+        color: $red;
+        font-size: 0.875rem;
+      }
+      img {
+        display: block;
+      }
+    }
+  }
+
+  &__menus {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: $space-md;
+
+    @include respond-to(tablet-horizontal) {
+      width: 70%;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+  }
+
+  &__menu-section {
+    width: 100%;
+
+    @include respond-to(tablet) {
+      width: calc(50% - #{$space-md});
+    }
+
+    @include respond-to(tablet-horizontal) {
+      width: fit-content;
+    }
+
+    &:last-child {
+      @include respond-to(tablet) {
+        width: 100%;
+      }
+
+      @include respond-to(tablet-horizontal) {
+        width: 34%;
+      }
+    }
+  }
+
+  &__menu-title {
+
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: $space-md;
+    color: $black;
+  }
+
+  &__menu-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction:column;
+    gap: 12px;
+
+    li {
+
+
+      a {
+        color: $black;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: $red;
+        }
+      }
+
+      &.current-menu-item > a {
+        color: $red;
+      }
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $space-sm;
+    padding-top: 50px;
+    border-top: 1px solid $gray;
+
+    @include respond-to(tablet) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__copyright {
+    p {
+      margin: 0;
+      font-size: 12px;
+      color: $black;
+    }
+  }
+
+  &__legal {
+    display: flex;
+    align-items: center;
+    gap: $space-xs;
+
+    a {
+      font-size: 12px;
+      color: $black;
+      text-decoration: none;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: $red;
+      }
+    }
+
+    &-separator {
+      font-size: 12px;
+      color: $black;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "alkooutlet",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass assets/scss/style.scss assets/css/style.css --no-source-map --style=expanded",
+    "sass:watch": "sass --watch assets/scss/style.scss:assets/css/style.css --no-source-map"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "sass": "^1.89.2"
+  }
+}

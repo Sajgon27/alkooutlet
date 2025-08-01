@@ -1,0 +1,14 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Product Card Component
+// This is intentionally kept minimal as per user instructions
+// The actual styling for content-product.php will be done separately by the user
+li.product {
+  // Base styles only
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+}
