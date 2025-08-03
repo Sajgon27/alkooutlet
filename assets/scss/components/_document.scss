@@ -1,0 +1,157 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.document {
+  padding: $space-lg 0;
+  
+  &__title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    margin-bottom: $space-lg;
+    color: $black;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    
+    @media (min-width: $breakpoint-desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__sidebar {
+    width: 100%;
+    
+    @media (min-width: $breakpoint-desktop) {
+      width: 30%;
+      flex: 0 0 30%;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    
+    @media (min-width: $breakpoint-desktop) {
+      width: 70%;
+      flex: 0 0 70%;
+      padding-left: $space-lg;
+    }
+  }
+
+  &__toc {
+    background-color: $light-red;
+    padding: $space-md;
+    position: sticky;
+    top: 30px;
+  }
+
+  &__toc-title {
+    font-family: 'Playfair Display', serif;
+    color: $red;
+    font-size: 1.5rem;
+    margin-bottom: $space-md;
+    font-weight: bold;
+  }
+
+  &__toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__toc-item {
+    margin-bottom: $space-xs;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  
+  &__toc-subitem {
+    padding-left: $space-md;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $red;
+      transform: translateY(-50%);
+    }
+  }
+  
+  &__toc-subsubitem {
+    padding-left: $space-lg;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: $black;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__toc-link {
+    color: $black;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+    
+    &:hover,
+    &:focus {
+      color: $red;
+      text-decoration: none;
+    }
+  }
+  
+  // Content styles
+  &__content {
+    h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+      color: $black;
+      margin-top: $space-lg;
+      margin-bottom: $space-md;
+      scroll-margin-top: 100px; // For smooth scrolling to anchors
+    }
+    
+    h2 {
+      font-size: 2rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    h4 {
+      font-size: 1.25rem;
+    }
+    
+    p {
+      margin-bottom: $space-md;
+      line-height: 1.6;
+    }
+    
+    ul, ol {
+      margin-bottom: $space-md;
+      padding-left: $space-lg;
+      
+      li {
+        margin-bottom: $space-xs;
+      }
+    }
+  }
+}

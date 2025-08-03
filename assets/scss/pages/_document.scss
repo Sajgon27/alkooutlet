@@ -1,2 +1,155 @@
 @use "../variables" as *;
 @use "../mixins" as *;
+
+.document {
+  padding: 50px 0;
+  @include respond-to(tablet) {
+    padding: 50px 0 100px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+    
+    @media (min-width: $breakpoint-desktop) {
+      flex-direction: row;
+    }
+  }
+  &__title {
+    margin-bottom: $space-lg;
+  }
+
+  &__sidebar {
+    width: 100%;
+    
+    @media (min-width: $breakpoint-desktop) {
+      width: 30%;
+      flex: 0 0 30%;
+    }
+  }
+
+  &__content {
+    width: 100%;
+    
+    @media (min-width: $breakpoint-desktop) {
+      width: 70%;
+      flex: 0 0 70%;
+      padding-left: $space-lg;
+    }
+  }
+
+  &__toc {
+    background-color: $red;
+    background-image: url("/wp-content/themes/alkooutlet/assets/images/dude-light-2.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    padding: $space-md;
+    position: sticky;
+    top: 30px;
+  }
+
+  &__toc-title {
+    font-family: 'Playfair Display', serif;
+    color: $white;
+    font-size: 2rem;
+    margin-bottom: $space-lg;
+   
+  }
+
+  &__toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__toc-item {
+    margin-bottom: $space-xs;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    a {
+        color: $light-white;
+    &:hover {
+        color: $white;
+    }
+    }
+  }
+  
+  &__toc-subitem {
+    padding-left: $space-md;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background-color: $red;
+      transform: translateY(-50%);
+    }
+  }
+  
+  &__toc-subsubitem {
+    padding-left: $space-lg;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background-color: $black;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__toc-link {
+    color: $black;
+    text-decoration: none;
+    font-size: 1rem;
+    display: block;
+    padding: 0.25rem 0;
+    transition: color 0.3s ease;
+    
+    &:hover,
+    &:focus {
+      color: $red;
+      text-decoration: none;
+    }
+  }
+  
+  // Content styles
+  &__content {
+    h2, h3, h4 {
+   
+      margin-top: $space-lg;
+      margin-bottom: $space-md;
+      scroll-margin-top: 100px; // For smooth scrolling to anchors
+    }
+    
+ 
+    
+    p {
+      margin-bottom: $space-md;
+      line-height: 1.6;
+    }
+    
+    ul, ol {
+      margin-bottom: $space-md;
+      padding-left: $space-lg;
+      
+      li {
+        margin-bottom: $space-xs;
+      }
+    }
+  }
+}

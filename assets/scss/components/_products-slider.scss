@@ -6,11 +6,11 @@
   padding: 50px 0;
   position: relative;
   overflow: hidden;
-  
+
   @include respond-to(tablet) {
     padding: 100px 0;
   }
-  
+
   // Background image styles
   &__background {
     position: absolute;
@@ -18,93 +18,104 @@
     bottom: 0;
     width: 100%;
     height: 100%;
-    background-position: left bottom;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
- 
-    z-index: 0;
-    display: none;
-    
+
+    z-index: -2;
+    display: block;
+
     @include respond-to(tablet) {
-      display: block;
+      background-position: left bottom;
     }
   }
-  
+
   // Theme variations
   &--light {
     background-color: $white;
     color: $black;
-    
+
     .products-slider__title {
       color: $black;
     }
-       .products-slider__small-text {
-        color: $red;
+    .products-slider__small-text {
+      color: $red;
     }
-        .products-slider__description p {
-        color:$light-black;
+    .products-slider__description p {
+      color: $light-black;
     }
-    
+
     .products-slider__nav-button {
       background-color: $white;
-     
+
       border-color: $red;
       span {
-         color: $red;
+        color: $red;
       }
       &:hover {
         background-color: $red;
         color: $white;
         border-color: $red;
-         span {
-         color: $white;
-      }
+        span {
+          color: $white;
+        }
       }
     }
   }
-  
+
   &--dark {
     background-color: $black;
     color: $white;
-    
+
     .products-slider__title {
       color: $white;
     }
     .products-slider__small-text {
-        color: $white;
+      color: $white;
     }
     .products-slider__description p {
-        color:$light-white;
+      color: $light-white;
     }
-    
+
     .products-slider__nav-button {
       background-color: transparent;
-      
+
       border-color: $white;
       span {
-color: $white;
+        color: $white;
       }
       &:hover {
         background-color: $white;
-       
-              span {
-         color: $light-black;
-      }
+
+        span {
+          color: $light-black;
+        }
       }
     }
+
+    //PRODUCT CARD OVERRIDE
+    .product-top-category,
+    .woocommerce-loop-product__title,
+    .woocommerce-Price-amount,
+    .woocommerce-Price-currencySymbol {
+      color: $white !important;
   }
-  
+  .product-short-excerpt {
+    color:$light-white !important;
+  }
+}
+
   // Main wrapper
   &__wrapper {
     position: relative;
     z-index: 1;
-    
+
     @include respond-to(tablet) {
       display: flex;
       gap: $space-lg;
     }
   }
-  
+
   // Content section
   &__content {
     display: flex;
@@ -112,112 +123,109 @@ color: $white;
     gap: $space-sm;
     margin-bottom: $space-md;
     position: relative;
-    
+
     @include respond-to(tablet) {
       flex: 0 0 30%;
       margin-bottom: 0;
       padding-right: $space-md;
       justify-content: space-between;
-      height: 450px;
+      height: auto;
     }
   }
-  
+
   // Swiper container
   &__swiper-container {
     width: 100%;
     overflow: hidden;
-    
+
     @include respond-to(tablet) {
-      flex: 0 0 70%;
+      flex: 100%;
       min-width: 0; // Required for proper flex and swiper behavior
     }
   }
-  
+
   // Label with icon and small text
   &__label {
     display: flex;
     align-items: center;
     gap: $space-xs;
     margin-bottom: $space-xs;
-    
+
     @include respond-to(tablet) {
       margin-bottom: $space-md;
     }
   }
-  
+
   &__icon {
     width: 24px;
     height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
     img {
       width: 100%;
       height: auto;
       object-fit: contain;
     }
   }
-  
+
   &__small-text {
     font-size: 1.25rem;
     font-weight: 400;
   }
-  
+
   // Title and description
   &__intro {
     margin-bottom: $space-md;
-    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     @include respond-to(tablet) {
       margin-bottom: auto;
     }
   }
-  
+
   &__title {
     font-size: 2rem;
     margin: 0 0 $space-sm;
     font-weight: 400;
     line-height: 1.2;
     text-transform: uppercase;
-    
+
     @include respond-to(tablet) {
       font-size: 2.5rem;
     }
   }
-  
+
   &__description {
     font-size: 1rem;
     line-height: 1.5;
     max-width: 100%;
-    
+    margin-top: auto;
     p {
       margin: 0;
     }
-    
-    @include respond-to(tablet) {
-      font-size: 1.125rem;
-    }
   }
-  
+
   // Navigation controls
   &__nav {
-    display: flex;
+    display: none;
     gap: $space-sm;
     margin-top: $space-sm;
     z-index: 10; // Ensure buttons are clickable
     position: relative; // Enable z-index
-    
+
     @include respond-to(tablet) {
-      margin-top: 0;
-      margin-bottom: $space-sm;
       align-self: flex-start;
+      display: flex;
     }
   }
-  
+
   &__nav-button {
     width: 48px;
     height: 48px;
-  
+
     border: 1px solid;
     display: flex;
     align-items: center;
@@ -226,15 +234,16 @@ color: $white;
     transition: all 0.3s ease;
     background-color: transparent;
     outline: none;
-    
-    .arrow-left, .arrow-right {
+
+    .arrow-left,
+    .arrow-right {
       position: relative;
       width: 14px;
       height: 14px;
       display: inline-block;
-      
+
       &:before {
-        content: '';
+        content: "";
         width: 10px;
         height: 10px;
         border-style: solid;
@@ -245,44 +254,44 @@ color: $white;
         left: 50%;
       }
     }
-    
+
     .arrow-left:before {
       transform: translate(-25%, -50%) rotate(-135deg);
     }
-    
+
     .arrow-right:before {
       transform: translate(-75%, -50%) rotate(45deg);
     }
   }
-  
+
   // Swiper container
   &__swiper {
     width: 100%;
     overflow: hidden;
-    
+
     .swiper-slide {
       height: 100%;
       width: auto;
       display: flex; // Ensure proper alignment of product card
-      
+
       li.product {
         height: 100%;
         margin: 0;
         width: 100%; // Make product take full width of slide
       }
     }
-    
+
     @include respond-to(tablet) {
       overflow: visible; // Show next slide partially on desktop
     }
   }
-  
+
   &__products {
     margin: 0;
     padding: 0;
     width: 100%;
   }
-  
+
   // Fix navigation arrow positioning and behavior
   .swiper-button-disabled {
     opacity: 0.5;

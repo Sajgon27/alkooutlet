@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initSubmenuToggles();
     initLogosSlider();
     initProductsSliders();
+  //  initBlogSlider();
 });
 
 /**
@@ -165,7 +166,7 @@ function initProductsSliders() {
             
             // Initialize the swiper with fixed 3 slides on desktop
             const swiper = new Swiper(`.${swiperInstanceId}`, {
-                slidesPerView: 1.2,
+                slidesPerView: 1,
                 spaceBetween: 16,
                 grabCursor: true,
                 watchOverflow: true,
@@ -179,25 +180,21 @@ function initProductsSliders() {
                 },
                 breakpoints: {
                     // Small mobile
-                    480: {
+                    580: {
                         slidesPerView: 2,
-                        spaceBetween: 16
+                        spaceBetween: 24
                     },
                     // Tablet
-                    768: {
+                    828: {
                         slidesPerView: 2,
-                        spaceBetween: 20
+                        spaceBetween: 24
                     },
                     // Desktop
-                    1024: {
+                    1154: {
                         slidesPerView: 3,
-                        spaceBetween: 24
+                        spaceBetween: 32
                     },
-                    // Large desktop
-                    1366: {
-                        slidesPerView: 3,
-                        spaceBetween: 24
-                    }
+                
                 }
             });
             
@@ -219,7 +216,4 @@ function initProductsSliders() {
         });
     }
 }
-
-
-
 

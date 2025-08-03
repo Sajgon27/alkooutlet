@@ -1,0 +1,171 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// FAQ Page Styles
+.faq-page {
+  padding: 50px 0;
+   background-image: url("/wp-content/themes/alkooutlet/assets/images/dude-light.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+  @include respond-to(desktop) {
+    padding: 50px 0 100px ;
+    background-position: 10% center;
+  }
+}
+
+.faq-layout {
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+
+    @include respond-to(desktop) {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: $space-xl;
+    }
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+   
+
+    @include respond-to(desktop) {
+      width: 40%;
+     
+    }
+  }
+
+  &__title {
+    font-size: 2.5rem;
+    font-weight: 700;
+margin-bottom: $space-lg;
+    @include respond-to(desktop) {
+      font-size: 3rem;
+      margin-bottom: $space-xl;
+    }
+  }
+
+  &__text {
+    line-height: 150%;
+    color: $light-black;
+    margin-bottom: $space-lg;
+    @include respond-to(desktop) {
+     margin-bottom: $space-xl;
+    }
+ 
+  }
+
+  &__accordion {
+    width: 100%;
+
+    @include respond-to(desktop) {
+      width: 60%;
+    }
+  }
+}
+
+
+// Accordion Component Styles
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: $space-md;
+ 
+  &__item {
+    border: 1px solid rgba($black, 0.1);
+    background-color: $white;
+    padding: $space-lg;
+    overflow: hidden;
+  }
+  
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding-bottom: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-weight: 600;
+    line-height: 150%;
+    font-size: 1.5rem;
+    
+ 
+  }
+  
+  &__title {
+    flex: 1;
+    max-width: 85%;
+    font-size: 1.25rem;
+    font-weight: 600; 
+    line-height: 150%;
+    color:$black;
+    @include respond-to(tablet) {
+      font-size: 1.5rem;
+    }
+  }
+  
+  &__icon {
+    position: relative;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid $red;
+   transition: 0.3s all;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-style: solid;
+      border-width: 0 2px 2px 0;
+      border-color: $red;
+      transform: rotate(45deg);
+      transition: transform 0.3s ease;
+      margin-top: -6px;
+    }
+  }
+  
+  &__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  &__content-inner {
+  
+    color: $light-black;
+    line-height: 150%;
+  }
+}
+
+// Active accordion state
+.accordion__item.active {
+
+  .accordion__icon::before {
+    transform: rotate(-135deg);
+    margin-top: 6px;
+  }
+  
+  .accordion__content {
+    max-height: 500px; // Will be adjusted by JS for proper animation
+  }
+  .accordion__header {
+    padding-bottom: $space-lg;
+  }
+  .accordion__icon {
+    background-color: $red;
+  }
+  .accordion__icon::before {
+    
+    border-color:white;
+  }
+}

@@ -146,7 +146,79 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize the box categories swiper with responsive behavior
     initBoxCategoriesSwiper();
+    
+    // Initialize Gallery 2 Columns Swiper (only on mobile)
+    const initGallery2ColumnsSwiper = function() {
+        let gallery2ColumnsSwiper;
+        let isInitialized = false;
+        
+        // Function to initialize or destroy Swiper based on screen width
+        const handleGallery2ColumnsSwiper = function() {
+            if (window.innerWidth < 768) {
+                if (!isInitialized) {
+                    // Initialize Swiper only on mobile
+                    gallery2ColumnsSwiper = new Swiper('.gallery-2-columns__swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 16,
+                        grabCursor: true,
+                        loop: true,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                        autoplay: {
+                            delay: 4000,
+                            disableOnInteraction: false,
+                        }
+                    });
+                    isInitialized = true;
+                }
+            } else {
+                // Destroy Swiper on tablet and desktop
+                if (isInitialized && gallery2ColumnsSwiper) {
+                    gallery2ColumnsSwiper.destroy(true, true);
+                    isInitialized = false;
+                }
+            }
+        };
+        
+        // Initial check
+        handleGallery2ColumnsSwiper();
+        
+        // Listen for resize events
+        window.addEventListener('resize', handleGallery2ColumnsSwiper);
+    };
+    
+    // Initialize the gallery 2 columns swiper with responsive behavior
+    initGallery2ColumnsSwiper();
+    
+    // Initialize the blog slider
+    initBlogSlider();
 });
 
 
+
+/**
+ * Initialize blog slider
+ */
+function initBlogSlider() {
+    // Check if the blog slider exists on the page
+    const blogSlider = document.querySelector('.blogSwiper');
+    
+    if (blogSlider) {
+        new Swiper('.blogSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 16,
+            grabCursor: true,
+            loop: true,
+            breakpoints: {
+                // Small mobile
+                480: {
+                    slidesPerView: 1,
+                    spaceBetween: 16,
+                }
+            }
+        });
+    }
+}
 

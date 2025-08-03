@@ -36,6 +36,24 @@
   }
 }
 
+@mixin primary-btn {
+  padding: $space-sm $space-lg !important;
+  border-radius: 0 !important;
+  text-align: center !important;
+  transition: 0.4s all !important;
+  cursor: pointer !important;
+  width: fit-content !important;
+  font-size: 0.875rem !important;
+  background-color: $red !important;
+  border: none !important;
+  color: $white !important;
+  border: 1px solid $red !important;
+  &:hover {
+    background-color: $white !important;
+    color: $red !important;
+  }
+}
+
 @mixin respond-to($breakpoint) {
   @if $breakpoint == mobile {
     @media (min-width: $breakpoint-mobile) {

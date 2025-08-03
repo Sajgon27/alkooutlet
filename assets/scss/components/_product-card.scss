@@ -5,10 +5,34 @@
 // This is intentionally kept minimal as per user instructions
 // The actual styling for content-product.php will be done separately by the user
 li.product {
-  // Base styles only
-  &__wrapper {
-    display: flex;
+        display: flex;
     flex-direction: column;
-    height: 100%;
-  }
+ .woocommerce-LoopProduct-link img {
+    height: 355px;
+    object-fit: contain;
+    background-color: $beige;
+    margin-bottom: $space-sm;
+    margin-inline: auto;
+ }
+ .product-top-category {
+    color:$red;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+ }
+ .woocommerce-loop-product__title {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 125%;;
+  color: $black;
+  margin-top:4px;
+  margin-bottom: $space-xs;
+}
+.product-short-excerpt {
+     font-size: 0.875rem;
+     line-height: 150%;
+     color: $black;
+}
+.add_to_cart_button {
+    margin-top: $space-sm;
+}
 }

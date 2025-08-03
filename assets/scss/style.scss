@@ -11,12 +11,16 @@
 @use "components/product-card";
 @use "components/logos";
 @use "components/products-slider";
+@use "components/newsletter";
+@use "components/cechy";
+
 //PAGES
 @use "pages/front-page";
 @use "pages/contact";
 @use "pages/o-nas";
 @use "pages/document";
 @use "pages/blank";
+@use "pages/faq";
 
 // WOOCOMMERCE
 @use "woocommerce/single-product";
@@ -67,9 +71,40 @@ span {
   line-height: 150%;
 }
 
-.woocommerce-loop-product__title {
-  font-size: 1rem;
+// Breadcrumbs styling
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: $space-lg;
+  
+  a {
+    color: $red;
+    text-decoration: none;
+    transition: color 0.2s ease;
+    
+    &:hover {
+      color: $red;
+    }
+  }
+  
+  img.breadcrumb-chevron {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+    margin: 0 8px;
+    opacity: 0.7;
+    transform: rotate(-90deg);
+  }
+  
+  @include respond-to(tablet) {
+    font-size: 15px;
+
+  }
 }
+
+
 
 h1,
 h2,
@@ -111,22 +146,36 @@ textarea {
   border-radius: 0;
 }
 
-.button {
-    padding: $space-md $space-lg !important;
+.add_to_cart_button {
+  @include primary-btn;
+
+}
+
+.button{
+    padding: $space-sm $space-lg !important;
     border-radius: 0 !important;
     text-align: center !important;
-    line-height: 150% !important;
     transition: 0.4s all !important;
+      font-size: 0.875rem !important;
     cursor: pointer !important;
     width: fit-content !important;
-    &--primary {
+    &--primary  {
         background-color: $red !important;
-        border: none !important;
         color: $white !important;
         border: 1px solid $red !important;
         &:hover {
             background-color: $white !important;
             color: $red !important;
+            
+        }
+    }
+        &--secondary {  
+        background-color: transparent !important;
+        color: $red !important;
+        border: 1px solid $red !important;
+        &:hover {
+            background-color: $red !important;
+            color: $white !important;
             
         }
     }
@@ -307,4 +356,12 @@ input[type="radio"] {
   position: absolute;
   width: 1px;
   word-wrap: normal;
+}
+
+
+.woocommerce-Price-amount , .woocommerce-Price-currencySymbol {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: $red;
+  line-height: 150%;
 }
