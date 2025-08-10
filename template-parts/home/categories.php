@@ -40,7 +40,7 @@ if ($selected_categories && !empty($selected_categories)) :
                                         <?php echo wp_get_attachment_image($thumbnail_id, 'medium', false, array('class' => 'categories__image')); ?>
                                     </div>
                                 <?php endif; ?>
-                                <h3 class="categories__title"><?php echo esc_html($category->name); ?></h3>
+                                <h6 class="categories__title"><?php echo esc_html($category->name); ?></h6>
                             </a>
                         </div>
                         <?php

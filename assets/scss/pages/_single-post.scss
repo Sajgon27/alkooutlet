@@ -1,0 +1,380 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.single-post-page {
+      padding-top: 50px;
+}
+
+.single-post {
+
+  
+  // Post Title
+  &__title {
+    margin-bottom: $space-lg;
+    
+  
+  }
+  
+  // Main Wrapper - 2 columns layout
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    padding-bottom: 50px;
+    @include respond-to(desktop) {
+      flex-direction: row;
+      gap: $space-lg;
+      padding-bottom: 100px;
+    }
+  }
+  
+  // Left Column - Main Content
+  &__main {
+    width: 100%;
+    
+    @include respond-to(desktop) {
+      flex: 0 0 calc(70% - #{$space-xl / 2});
+    }
+  }
+  
+  // Post Date
+  &__date {
+    margin-bottom: $space-sm;
+    color: $light-black;
+   
+  }
+  
+  // Featured Image
+  &__image {
+    margin-bottom: $space-lg;
+    
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+  
+  // Post Content
+  &__content {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: $black;
+    margin-bottom: $space-lg;
+    
+    h2, h3, h4, h5, h6 {
+      margin-top: $space-lg;
+      margin-bottom: $space-md;
+      font-family: 'Playfair Display', serif;
+      color: $black;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+    }
+    
+    h4 {
+      font-size: 1.25rem;
+    }
+    
+    p {
+      margin-bottom: $space-md;
+    }
+    
+    ul, ol {
+      margin-bottom: $space-md;
+      padding-left: $space-lg;
+      
+      li {
+        margin-bottom: $space-xs;
+      }
+    }
+    
+    a {
+      color: $red;
+      text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    img {
+      max-width: 100%;
+      height: auto;
+      margin: $space-md 0;
+    }
+    
+    blockquote {
+      border-left: 4px solid $red;
+      padding-left: $space-md;
+      margin: $space-lg 0;
+      font-style: italic;
+      color: $light-black;
+    }
+    
+    figure {
+      margin: $space-lg 0;
+      
+      img {
+        margin: 0 0 $space-xs;
+      }
+      
+      figcaption {
+        font-size: 0.875rem;
+        color: $light-black;
+        text-align: center;
+      }
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: $space-md 0;
+      
+      th, td {
+        padding: $space-xs $space-sm;
+        border: 1px solid $gray;
+      }
+      
+      th {
+        background-color: $light-red;
+        text-align: left;
+      }
+    }
+  }
+  
+  // Product Recommendation Section
+  &__product-section {
+    padding:100px 0;
+  }
+  
+  &__product-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+    position: relative;
+    
+    @include respond-to(desktop) {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+  
+  &__product-description {
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    @include respond-to(desktop) {
+      flex: 0 0 30%;
+    }
+  }
+  
+  &__product-header {
+    span {
+        color: $red;
+    }
+  }
+  
+
+  
+
+  
+
+  
+  &__product-text {
+    @include text-style;
+  }
+  
+  &__product-display {
+    @include respond-to(desktop) {
+      flex: 0 0 70%;
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  // Custom Product Card
+  &__product-card {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    
+    @include respond-to(tablet) {
+      flex-direction: row;
+    }
+    
+    &-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      width: 50%;
+    }
+    
+    &-image {
+      position: relative;
+      width: 100%;
+   
+      background-color: $beige;
+      
+
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+    }
+    
+    
+    &-content {
+      padding: $space-md;
+      display: flex;
+      flex-direction: column;
+      
+      @include respond-to(tablet) {
+        width: 50%;
+        padding: $space-lg;
+        justify-content: center;
+      }
+    }
+    
+    &-category {
+      color: $red;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: $space-xs;
+    }
+    
+    &-title {
+      margin: 0 0 $space-sm;
+      
+   
+    }
+    
+    &-excerpt {
+      color: $light-black;
+      font-size: 0.875rem;
+      line-height: 1.6;
+      margin-bottom: $space-md;
+    }
+    
+    &-bottom {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: $space-sm;
+      
+      @include respond-to(tablet) {
+     
+        justify-content: space-between;
+      }
+    }
+    
+    &-price {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: $black;
+      
+      .amount {
+        color: $red;
+      }
+      
+      del {
+        font-size: 1rem;
+        color: $light-black;
+        text-decoration: line-through;
+        margin-right: $space-xs;
+      }
+      
+      ins {
+        text-decoration: none;
+      }
+    }
+    
+
+  }
+
+
+  
+  // Right Column - Sidebar
+  &__sidebar {
+    width: 100%;
+    
+    @include respond-to(desktop) {
+      flex: 0 0 calc(30% - #{$space-xl / 2});
+    }
+  }
+  
+
+  
+  // Related Posts
+  &__related {
+    margin-bottom: $space-lg;
+    display:flex;
+    flex-direction: column;
+    gap: $space-lg;
+  }
+  
+ 
+  
+  &__related-link {
+    display: flex;
+    text-decoration: none;
+    color: inherit;
+    gap: $space-sm;
+   
+  }
+  
+  &__related-image {
+    width: 50%;
+   aspect-ratio: 1;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s;
+    }
+  }
+  
+  &__related-content {
+     width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  &__related-title {
+  
+  }
+  &__blog-link {
+    margin-top: $space-lg;
+    display: flex;
+  }
+  
+  &__related-more {
+    color: $red;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-top: auto;
+  }
+  
+  &__related-link:hover {
+    .single-post__related-img {
+      transform: scale(1.05);
+    }
+    
+    .single-post__related-title {
+      color: $red;
+    }
+  }
+  
+}

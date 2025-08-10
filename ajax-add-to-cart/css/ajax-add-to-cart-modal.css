@@ -1,0 +1,379 @@
+/**
+ * AJAX Add to Cart - Modal Style CSS
+ * 
+ * @package WC_AJAX_Add_To_Cart
+ * @version 1.1.0
+ */
+
+/* Modal Background */
+.wc-ajax-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    overflow: auto;
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.wc-ajax-modal.show {
+    opacity: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Modal Content */
+.wc-ajax-modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 90%;
+    width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    position: relative;
+    transition: all 0.3s ease;
+    transform: scale(0.9);
+}
+
+.wc-ajax-modal.show .wc-ajax-modal-content {
+    transform: scale(1);
+}
+
+/* Modal Header */
+.wc-ajax-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wc-ajax-modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.wc-ajax-modal-close {
+    border: none;
+    background: transparent;
+    font-size: 24px;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wc-ajax-modal-close:hover {
+    color: #333;
+}
+
+/* Modal Body */
+.wc-ajax-modal-body {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Product Image */
+.wc-ajax-modal-product-image {
+    flex: 0 0 40%;
+    max-width: 40%;
+}
+
+.wc-ajax-modal-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+/* Product Info */
+.wc-ajax-modal-product-info {
+    flex: 0 0 55%;
+    max-width: 55%;
+}
+
+/* Price */
+.wc-ajax-modal-price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Attributes */
+.wc-ajax-modal-attributes {
+    margin-bottom: 20px;
+}
+
+.wc-ajax-modal-attribute {
+    margin-bottom: 15px;
+}
+
+.wc-ajax-modal-attribute-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+}
+
+/* Attribute Buttons */
+.wc-ajax-modal-attribute-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.wc-ajax-modal-attribute-button {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #333;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    display: inline-block;
+    min-width: 40px;
+    text-align: center;
+}
+
+.wc-ajax-modal-attribute-button:hover {
+    background-color: #eee;
+    border-color: #ccc;
+}
+
+.wc-ajax-modal-attribute-button.active {
+    background-color: #333;
+    border-color: #333;
+    color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.wc-ajax-modal-attribute-button.disabled,
+.wc-ajax-modal-attribute-button.out-of-stock {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.wc-ajax-modal-attribute-button.invalid {
+    border-color: #e74c3c;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Quantity */
+.wc-ajax-modal-quantity {
+    margin-bottom: 20px;
+}
+
+.wc-ajax-modal-quantity label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.wc-ajax-modal-quantity-controls {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    width: fit-content;
+}
+
+.wc-ajax-modal-quantity-minus,
+.wc-ajax-modal-quantity-plus {
+    border: none;
+    background-color: #f5f5f5;
+    color: #333;
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wc-ajax-modal-quantity-input {
+    width: 40px;
+    text-align: center;
+    border: none;
+    padding: 0;
+    height: 32px;
+    -moz-appearance: textfield;
+}
+
+.wc-ajax-modal-quantity-input::-webkit-outer-spin-button,
+.wc-ajax-modal-quantity-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Actions */
+.wc-ajax-modal-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    flex-direction: column;
+}
+
+.wc-ajax-modal-add-to-cart {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.wc-ajax-modal-add-to-cart:hover {
+    background-color: #222;
+}
+
+.wc-ajax-modal-add-to-cart.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.wc-ajax-modal-add-to-cart.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: #999;
+}
+
+.wc-ajax-modal-view-product {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.wc-ajax-modal-view-product:hover {
+    background-color: #eee;
+    border-color: #ccc;
+    color: #333;
+    text-decoration: none;
+}
+
+/* Variant Gallery */
+.wc-ajax-modal-variant-gallery {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.wc-ajax-modal-variant-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.wc-ajax-modal-variant-image.active {
+    border-color: #333;
+}
+
+/* Loading Spinner */
+.wc-ajax-modal-spinner {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #333;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+.wc-ajax-modal.loading .wc-ajax-modal-spinner {
+    display: block;
+}
+
+.wc-ajax-modal.loading .wc-ajax-modal-body {
+    opacity: 0.5;
+}
+
+/* Error Message */
+.wc-ajax-modal-error {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: none;
+    padding: 8px 12px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-radius: 4px;
+}
+
+.wc-ajax-modal-error.show {
+    display: block;
+}
+
+/* Responsiveness */
+@media (max-width: 767px) {
+    .wc-ajax-modal-content {
+        width: 90%;
+        max-width: 450px;
+    }
+    
+    .wc-ajax-modal-body {
+        flex-direction: column;
+    }
+    
+    .wc-ajax-modal-product-image,
+    .wc-ajax-modal-product-info {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .wc-ajax-modal-attribute-buttons {
+        flex-wrap: wrap;
+    }
+
+    .wc-ajax-modal-attribute-button {
+        margin-bottom: 5px;
+    }
+}

@@ -11,7 +11,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Get ACF group field
-$gallery_group = get_field('galeria_2_kolumny');
+$gallery_group = get_field('galeria_2_kolumny','options');
 
 // Check if the group exists and extract the fields
 if (is_array($gallery_group)) {

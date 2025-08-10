@@ -1,2 +1,471 @@
 @use "../variables" as *;
 @use "../mixins" as *;
+
+.shop-archive {
+  padding: 50px 0;
+  background-image: url("/wp-content/themes/alkooutlet/assets/images/dude-light.svg");
+  background-repeat: no-repeat;
+  background-position: 10% 10%;
+  background-size: 40%;
+
+  @include respond-to(desktop) {
+    padding: 50px 0 0;
+  }
+
+  &__header {
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: $space-lg;
+    }
+  }
+
+  &__header-content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+
+    @include respond-to(desktop) {
+      gap: $space-lg;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+  }
+
+  .shop-toolbar {
+    display: flex;
+    align-items: stretch;
+    gap:$space-sm;
+    flex-wrap: wrap;
+  }
+
+  &__breadcrumbs {
+    width: 100%;
+  }
+
+  &__title {
+    width: fit-content;
+  }
+
+  .woocommerce-ordering {
+    width: fit-content;
+    margin: 0;
+
+    .orderby {
+      padding: $space-sm !important;
+      @include respond-to(mobile) {
+     padding: $space-sm $space-lg !important;
+      }
+    }
+  }
+
+  .button--mobile-filters {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: $space-xs;
+    margin-bottom: $space-md;
+    width: 100%;
+    transition: background-color 0.2s ease;
+    gap: $space-md;
+
+    img {
+      width: 24px;
+      height: 24px;
+      transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    }
+
+    &:active {
+      background-color: $red;
+      color: $white;
+
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+
+    &--active,
+    &.button--mobile-filters-active {
+      background-color: $red !important;
+      color: $white !important;
+
+      img {
+        filter: brightness(0) invert(1);
+        transform: rotate(180deg);
+      }
+    }
+
+    @include respond-to(desktop) {
+      display: none !important;
+    }
+  }
+
+
+
+  &__content {
+    position: relative;
+
+
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: $space-xl;
+
+      @include respond-to(desktop) {
+        flex-direction: row;
+      }
+
+      // On mobile, ensure the sidebar appears right after the button
+      @media (max-width: #{$breakpoint-desktop - 1px}) {
+        .button--mobile-filters+.shop-archive__sidebar {
+          order: 1;
+        }
+
+        .facetwp-template {
+          order: 2;
+        }
+      }
+
+      .facetwp-template {
+        width: 100%;
+
+        @include respond-to(desktop) {
+          width: 75%;
+        }
+
+        .woocommerce-notices-wrapper {
+          display: none !important;
+        }
+      }
+    }
+  }
+
+  &__sidebar {
+    width: 100%;
+    min-width: unset;
+    border: 1px solid #141f2526;
+    background-color: $white;
+    display: flex;
+    flex-direction: column;
+    gap: $space-lg;
+    padding: $space-md;
+    height: min-content;
+
+    // Mobile styles
+    @media (max-width: $breakpoint-desktop) {
+      display: none; // Hide by default on mobile
+      margin-top: $space-md;
+      margin-bottom: 0;
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+
+      &.animating {
+        display: flex;
+        transition: max-height 0.3s ease-in-out,
+          opacity 0.25s ease-in-out,
+          margin 0.25s ease-in-out,
+          transform 0.25s ease-in-out;
+        transform: translateY(-10px);
+        opacity: 0;
+      }
+
+      &.active {
+        max-height: 2000px; // Large enough to fit all content
+        opacity: 1;
+        margin-bottom: $space-md;
+        transform: translateY(0);
+      }
+
+      &.closing {
+        transform: translateY(-10px);
+        opacity: 0;
+        max-height: 0;
+        margin-bottom: 0;
+        transition: max-height 0.25s ease-in-out,
+          opacity 0.25s ease-in-out,
+          margin 0.25s ease-in-out,
+          transform 0.25s ease-in-out;
+      }
+    }
+
+    @include respond-to(desktop) {
+      display: flex; 
+      padding: $space-lg;
+      opacity: 1;
+      max-height: none;
+      width: 25%;
+      min-width: 390px;
+    }
+
+    >div {
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+      padding-bottom: $space-lg;
+      border-bottom: 1px solid #141f2526;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    .facetwp-facet-kategorie_produkty {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+
+      .facetwp-counter {
+        display: none;
+      }
+    }
+
+    &-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-single-title {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    gap: 6px;
+      justify-content: space-between;
+    }
+
+    // Close button
+    &-close {
+      position: absolute;
+      top: $space-sm;
+      right: $space-sm;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      border: none;
+      color: $light-black;
+      cursor: pointer;
+      transition: color 0.3s ease;
+      z-index: 2;
+
+      @include respond-to(desktop) {
+        display: none;
+      }
+
+      &:hover {
+        color: $red;
+      }
+
+      svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+
+    // Header positioning
+    &-header {
+      position: relative;
+    }
+
+    &-header {
+      display: flex;
+      flex-direction: column;
+      gap: $space-sm;
+      padding-bottom: $space-lg;
+      border-bottom: 1px solid #141f2526;
+    }
+
+    &-search {
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+      padding-bottom: $space-lg;
+      border-bottom: 1px solid #141f2526;
+
+      .facetwp-input-wrap,
+      input {
+        width: 100%;
+        min-width: unset !important;
+      }
+
+      .facetwp-icon {
+        right: $space-sm;
+      }
+
+      .facetwp-facet {
+        margin: 0;
+      }
+    }
+
+    &-categories {
+      display: flex;
+      flex-direction: column;
+      gap: $space-lg;
+      padding-bottom: $space-lg;
+
+      .facetwp-facet {
+        margin: 0;
+      }
+
+      .facetwp-type-checkboxes {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .facetwp-display-value {
+        padding: 0 !important;
+      }
+
+      .facetwp-checkbox {
+        display: inline-block;
+        padding: 8px $space-sm !important;
+        background: white;
+        border: 1px solid rgba(20, 31, 37, 0.1490196078);
+        cursor: pointer;
+
+        flex-shrink: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      .facetwp-checkbox.checked {
+        background-color: $red;
+        color: $white;
+        background-image: none !important;
+
+        span {
+          color: $white;
+        }
+      }
+    }
+
+    &-price {
+
+      .facetwp-slider-reset,
+      .facetwp-type-number_range .facetwp-submit {
+        display: none !important;
+      }
+
+      .facetwp-type-number_range {
+        display: flex;
+        position: relative;
+        gap: $space-sm;
+
+        input {
+          width: 50%;
+        }
+      }
+
+      &-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: -30px;
+      }
+    }
+
+    .facetwp-facet-reset_produkty {
+      margin: 0 !important;
+
+      a {
+        color: $red !important;
+        font-size: 1rem !important;
+        line-height: 150% !important;
+      }
+    }
+  }
+
+  .facetwp-facet {
+    margin-bottom: 0 !important;
+  }
+  .facetwp-type-reset {
+    text-align: right;
+  }
+
+  .facetwp-reset {
+    color: $red;
+  }
+
+  .facetwp-counter {
+    display: none;
+  }
+
+  ul.products {
+    display: grid;
+    gap: $space-lg;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include respond-to(mobile) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width:1280px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    .product {
+      width: 100% !important;
+      margin: 0 !important;
+    }
+  }
+
+  // STANDARD FILTER CHECKBOX STYLES
+  .facetwp-checkbox {
+    position: relative;
+    background: $white;
+    padding-left: 28px;
+    margin: 0 !important;
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 5px;
+      width: 18px;
+      height: 18px;
+      border: 1px solid $gray;
+
+      background-color: #ffffff;
+    }
+  }
+
+  .facetwp-checkbox.checked::before {
+    background-color: $red;
+    border-color: $red;
+  }
+
+  .facetwp-type-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+}
+
+nav.woocommerce-pagination {
+  margin-top: $space-lg !important;
+
+  ul li span.current {
+    background-color: $red !important;
+    color: $white !important;
+  }
+}
+
+
+.woocommerce-no-products-found>div {
+  justify-content: center;
+}

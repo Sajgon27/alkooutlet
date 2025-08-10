@@ -72,14 +72,14 @@ if ($products_query->have_posts()) :
             <div class="products-slider__content">
                   <div class="products-slider__background" style="background-image: url('<?php echo esc_url($bg_image); ?>');" aria-hidden="true"></div>
                 <?php if (!empty($icon) || !empty($small_text)) : ?>
-                    <div class="products-slider__label">
+                    <div class="products-slider__label section-label">
                         <?php if (!empty($icon)) : ?>
-                            <div class="products-slider__icon">
+                            
                                 <img src="<?php echo esc_url($icon); ?>" alt="" aria-hidden="true">
-                            </div>
+                          
                         <?php endif; ?>
                         <?php if (!empty($small_text)) : ?>
-                            <span class="products-slider__small-text"><?php echo esc_html($small_text); ?></span>
+                            <span class="products-slider__small-text section-label__text"><?php echo esc_html($small_text); ?></span>
                         <?php endif; ?>
                     </div>
                 <?php endif; ?>

@@ -1,2 +1,133 @@
 @use "../variables" as *;
 @use "../mixins" as *;
+
+.error-404 {
+  padding: $space-lg 0;
+  position: relative;
+  overflow: hidden;
+  
+  @include respond-to(desktop) {
+    padding: $space-xl 0;
+  }
+  
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+    
+    @include respond-to(tablet) {
+    
+      align-items: center;
+    }
+  }
+  
+  &__content {
+    flex: 1;
+    max-width: 100%;
+    
+    @include respond-to(tablet) {
+
+      padding-right: $space-lg;
+    }
+  }
+  
+  &__icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: $space-sm;
+    
+    img {
+      width: 32px;
+      height: auto;
+      margin-right: $space-sm;
+    }
+  }
+  
+  &__label {
+    color: $red;
+    font-size: 1.25rem;
+  }
+  
+  &__title {
+    font-size: 2rem;
+    margin-bottom: $space-lg;
+    color: $black;
+    
+    @include respond-to(desktop) {
+      font-size: 2.5rem;
+    }
+  }
+  
+  &__text {
+    color: $light-black;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: $space-lg;
+    max-width: 90%;
+    
+    @include respond-to(desktop) {
+      max-width: 80%;
+    }
+  }
+  
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-sm;
+    
+    @include respond-to(tablet) {
+      flex-wrap: nowrap;
+      gap: $space-lg;
+    }
+  }
+  
+  &__button {
+    width: 100%;
+    text-align: center;
+    
+    @include respond-to(tablet) {
+      width: auto;
+    }
+    
+    &--primary {
+      background-color: $red;
+      color: $white;
+      border: 1px solid $red;
+      
+      &:hover {
+        background-color: darken($red, 10%);
+      }
+    }
+    
+    &--secondary {
+      border: 1px solid $red;
+      color: $red;
+      
+      &:hover {
+        background-color: rgba($red, 0.05);
+      }
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    margin-top: $space-md;
+   
+    @include respond-to(tablet) {
+     
+      margin-top: 0;
+    }
+    
+    img {
+      width: 100%;
+      height: auto;
+        max-height: 850px;
+      object-fit: cover;
+      border-radius: 4px;
+      @include respond-to(tablet) {
+         max-height: 550px;
+      }
+    }
+  }
+}

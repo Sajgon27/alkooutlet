@@ -1,2 +1,249 @@
 @use "../variables" as *;
 @use "../mixins" as *;
+
+.my-account-page {
+  padding: 50px 0;
+  background-image: url("/wp-content/themes/alkooutlet/assets/images/dude-light.svg");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  @include respond-to(desktop) {
+    padding: 50px 0 100px;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+  }
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: $space-xl;
+  }
+  .my-account-page__description {
+    @include text-style;
+    max-width: 700px;
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+    @include respond-to(desktop) {
+      gap: $space-lg;
+    }
+  }
+
+  &-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: $space-xl;
+    @include respond-to(desktop) {
+      flex-direction: row;
+    }
+  }
+
+  .woocommerce-MyAccount-navigation {
+    width: 100%;
+    @include respond-to(desktop) {
+      width: 33%;
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+
+      li {
+        padding: $space-md $space-lg;
+        border: 1px solid #141f2526;
+        border-bottom: 0;
+        background-color: $white;
+      }
+      li:last-child {
+        border-bottom: 1px solid #141f2526;
+      }
+      li.is-active {
+        background-color: $red;
+
+        a {
+          color: $white;
+        }
+      }
+      a {
+        font-size: 1.5rem;
+        font-family: "Playfair Display";
+        letter-spacing: -0.64px;
+        font-weight: 400;
+        line-height: 150%;
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .woocommerce-MyAccount-content {
+    border: 1px solid #141f2526;
+    background-color: $white;
+    padding: $space-lg;
+    width: 100%;
+    height: fit-content;
+    @include respond-to(desktop) {
+      width: 66.6%;
+    }
+    .button {
+      background-color: $red !important;
+      color: $white !important;
+      padding: 12px 24px !important;
+      font-weight: 400 !important;
+      border-radius: 0 !important;
+      width: fit-content;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+.woocommerce-orders-table {
+  width: 100%;
+  border: 0 !important;
+  @include respond-to(desktop) {
+    width: 100%;
+  }
+  tr {
+    height: 60px;
+  }
+  th {
+    text-align: left;
+  }
+  .button {
+    color: $white !important;
+    background-color: $red !important;
+    padding: 12px !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important;
+  }
+}
+
+.woocommerce-customer-details,
+.woocommerce-order-details {
+  h2 {
+    margin-bottom: $space-lg;
+    margin-top: 8px !important;
+  }
+  .woocommerce-order-details__title {
+    margin-top: $space-lg;
+  }
+}
+
+.woocommerce-info {
+  border: 0 !important;
+  display: flex;
+  font-weight: 500 !important;
+  color: $black !important;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+  .button {
+    background-color: $red !important;
+    color: $white !important;
+    padding: 12px 24px !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important;
+  }
+
+  &::before,
+  &::after {
+    display: none !important;
+  }
+}
+
+.woocommerce-Addresses {
+  h2 {
+    font-size: 2rem;
+    margin-bottom: $space-sm;
+    margin-top: $space-lg;
+  }
+  .woocommerce-Address-title {
+    display: flex;
+    flex-direction: column;
+    a {
+      background-color: $red !important;
+      color: $white !important;
+      padding: 12px 24px !important;
+      font-weight: 400 !important;
+      border-radius: 0 !important;
+      width: fit-content;
+      margin-bottom: $space-lg;
+    }
+  }
+}
+
+.woocommerce-address-fields .button,
+.woocommerce-EditAccountForm .button {
+  margin-top: $space-lg !important;
+}
+
+.woocommerce-address-fields__field-wrapper p,
+.woocommerce-EditAccountForm p {
+  width: 100% !important;
+  @include respond-to(desktop) {
+    width: auto;
+  }
+}
+
+////////////////////////
+// LOGIN/REGISTER PAGE
+////////////////////////
+
+#customer_login {
+  max-width: 1440px;
+  margin-inline: auto;
+ padding:50px $space-md;
+  @include respond-to(desktop) {
+    padding:50px $space-xl;
+  }
+
+  .woocommerce-form-login  , form.register {
+    border-radius: 0 !important;
+    padding: $space-lg !important;
+    background-color: $white;
+  }
+
+  .button {
+    background-color: $red !important;
+    color: $white !important;
+    padding: 12px 24px !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important;
+    width: fit-content;
+    margin-top: 8px;
+  }
+}
+
+////////////////////////
+// LOST PASSWORD PAGE
+////////////////////////
+
+ .woocommerce-lost-password main div.woocommerce {
+  max-width: 1440px;
+  margin-inline: auto;
+  padding: $space-md;
+  @include respond-to(desktop) {
+    padding: $space-xl;
+  }
+  .button {
+    background-color: $red !important;
+    color: $white !important;
+    padding: 12px 24px !important;
+    font-weight: 400 !important;
+    border-radius: 0 !important;
+    width: fit-content;
+    margin-top: 8px;
+  }
+  .lost_reset_password label {
+    font-weight: 600;
+    margin-top: $space-sm;
+  }
+}

@@ -1,0 +1,54 @@
+/**
+ * AJAX Add to Cart - Style CSS
+ * 
+ * @package WC_AJAX_Add_To_Cart
+ * @version 1.0.0
+ */
+
+/* Powiadomienie o dodaniu do koszyka */
+.wc-ajax-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    background-color: rgba(33, 33, 33, 0.92);
+    color: #fff !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 6px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    max-width: 400px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.4;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.wc-ajax-notification.show {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease;
+}
+
+.wc-ajax-notification-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.wc-ajax-notification-content span {
+    color:white !important;
+}
+
+/* Responsywność */
+@media (max-width: 600px) {
+    .wc-ajax-notification {
+        max-width: 90%;
+        min-width: 250px;
+    }
+}

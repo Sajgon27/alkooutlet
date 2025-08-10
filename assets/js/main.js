@@ -22,10 +22,14 @@ function initMobileMenu() {
     if (menuToggle && mobileMenu && mobileMenuClose) {
         // Open mobile menu
         menuToggle.addEventListener('click', (e) => {
+            e.preventDefault();
             e.stopPropagation();
             mobileMenu.classList.add('active');
+            menuToggle.setAttribute('aria-expanded', 'true');
             menuToggle.classList.add('active');
-            body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            setTimeout(() => {
+                body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+            }, 200);
         });
 
         // Close mobile menu
@@ -44,9 +48,17 @@ function initMobileMenu() {
             }
         });
 
+        // Close menu on escape key
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                closeMobileMenu();
+            }
+        });
+
         // Function to close mobile menu
         function closeMobileMenu() {
             mobileMenu.classList.remove('active');
+            menuToggle.setAttribute('aria-expanded', 'false');
             menuToggle.classList.remove('active');
             body.style.overflow = '';
         }
@@ -67,8 +79,9 @@ function initSubmenuToggles() {
             // Create toggle button
             const toggleBtn = document.createElement('button');
             toggleBtn.classList.add('submenu-toggle');
-            toggleBtn.innerHTML = '<span class="screen-reader-text">Toggle submenu</span>';
+            toggleBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 9L11 4L10 3L6 7L2 3L1 4L6 9Z" fill="currentColor"/></svg><span class="screen-reader-text">Toggle submenu</span>';
             toggleBtn.setAttribute('aria-expanded', 'false');
+            toggleBtn.setAttribute('aria-label', 'Toggle submenu');
             
             // Insert toggle button after link
             link.parentNode.insertBefore(toggleBtn, link.nextSibling);

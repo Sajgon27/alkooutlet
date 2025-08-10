@@ -1,80 +1,121 @@
 @use "../variables" as *;
 @use "../mixins" as *;
 
-.contact {
+.contact-intro {
   padding: 50px 0;
+  background-image: url("/wp-content/themes/alkooutlet/assets/images/dude-light.svg");
+  background-repeat: no-repeat;
+  background-position: 10% center;
+  background-size: 600px;
+
   @include respond-to(desktop) {
     padding: 50px 0 100px;
   }
-  
+}
+
+.contact {
   &__grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: $space-lg;
-    
-    @media (min-width: $breakpoint-tablet) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    @media (min-width: $breakpoint-desktop) {
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: auto 1fr;
+
+    @include respond-to(desktop) {
+      grid-template-columns: 1fr 2fr;
     }
   }
-  
+
   &__column {
-    display: flex;
-    flex-direction: column;
-    
     &--left {
-      @media (min-width: $breakpoint-desktop) {
-        grid-row: 1 / span 2;
-      }
+      display: flex;
+      flex-direction: column;
     }
-    
-    &--middle,
-    &--right {
-      @media (min-width: $breakpoint-desktop) {
-        grid-row: 1 / span 2;
+
+    &--content {
+      @include respond-to(desktop) {
+        grid-column: 2 / span 1;
       }
     }
   }
-  
-  &__grid-content {
+
+  // Content grid - 2 columns x 3 rows where image1 spans 2 rows
+  &__content-grid {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: auto auto;
-    gap: $space-md;
+    grid-template-rows: auto auto auto auto;
+    gap: $space-lg;
+
+    @include respond-to(desktop) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto auto;
+      align-items: stretch;
+      grid-auto-flow: dense;
+    }
+  }
+
+  // Individual items positioning
+  &__item {
     height: 100%;
-    
-    .contact__column--middle & {
-      @media (min-width: $breakpoint-desktop) {
-        grid-template-rows: auto 1fr;
+    &--box1 {
+      @include respond-to(desktop) {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+        height: 100%;
       }
     }
-    
-    .contact__column--right & {
-      @media (min-width: $breakpoint-desktop) {
-        grid-template-rows: auto auto auto;
+
+    &--image1 {
+      @include respond-to(desktop) {
+        max-height: unset;
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 2;
+      }
+    }
+
+    &--image2 {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      display: none;
+      @include respond-to(desktop) {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 1;
+        height: 100%;
+        display: block;
+      }
+    }
+
+    &--box2 {
+      @include respond-to(desktop) {
+        grid-column: 2 / span 1;
+        grid-row: 2 / span 1;
+      }
+    }
+
+    &--box3 {
+      @include respond-to(desktop) {
+        grid-column: 2 / span 1;
+        grid-row: 3 / span 1;
       }
     }
   }
-  
+
   &__title {
-    margin-bottom: $space-xl;
-   
+    margin-bottom: $space-lg;
+    @include respond-to(desktop) {
+      margin-bottom: $space-xl;
+    }
   }
-  
+
   &__intro {
     margin-bottom: $space-lg;
-    
+
     p {
       font-size: 1rem;
       line-height: 1.6;
       color: $light-black;
     }
   }
-  
+
   &__card {
     background-color: $white;
     padding: $space-lg;
@@ -83,82 +124,234 @@
     flex-direction: column;
     gap: $space-lg;
     align-items: flex-start;
-    height: 100%;
-    
-    .contact__column--middle &,
-    .contact__column--right & {
-      @media (min-width: $breakpoint-desktop) {
-        min-height: 250px;
-      }
-    }
+    height: auto;
 
-    
     &-icon {
-      
-      
       img {
         width: 32px;
         height: auto;
       }
     }
-    
+
     &-title {
       font-size: 1.5rem;
-     
+
       color: $black;
     }
-    
+
     &-text {
-    
       line-height: 1.5;
-      
+
       color: $light-black;
     }
-    
+
     &-value {
       font-size: 1.125rem;
       color: $red;
-
     }
-    
   }
-  
+
   &__image {
     overflow: hidden;
-    border-radius: 4px;
     height: 100%;
-    
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
     &--middle {
-      grid-row: 2 / span 1;
-      aspect-ratio: 1/1;
-      
-      @media (min-width: $breakpoint-desktop) {
+      min-height: 300px;
+
+      @include respond-to(desktop) {
         height: 100%;
-        max-height: unset;
-        min-height: 300px;
-      }
-      
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
       }
     }
-    
+
     &--right {
-      grid-row: 1 / span 1;
-      aspect-ratio: 16/9;
-      
-      @media (min-width: $breakpoint-desktop) {
-        height: 150px;
-      }
-      
-      img {
+      display: flex; /* Helps with height matching */
+    }
+  }
+}
+
+//////////////////////////////
+/// Contact Form
+/////////////////////////////
+
+//////////////////////////////
+/// Contact Form Section
+/////////////////////////////
+
+.contact-form-section {
+  background-color: $black;
+  padding: $space-lg 0;
+  color: $white;
+
+  @include respond-to(desktop) {
+    padding: $space-xl 0;
+  }
+  .container {
+    background-image: url("/wp-content/themes/alkooutlet/assets/images/dude-dark-left.svg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain;
+    @include respond-to(desktop) {
+      background-position: right center;
+    }
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column; // Reversed for mobile to show form first
+    gap: $space-lg;
+
+    @include respond-to(desktop) {
+      flex-direction: row;
+      align-items: stretch;
+      gap: $space-xl;
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: auto;
+
+    @include respond-to(desktop) {
+      order: 2;
+    }
+  }
+
+  &__icon-wrap {
+    display: flex;
+    align-items: center;
+    margin-bottom: $space-lg;
+  }
+
+  &__icon {
+    margin-right: $space-sm;
+
+    img {
+      width: 32px;
+      height: auto;
+    }
+  }
+
+  &__contact-text {
+    font-size: 1.25rem;
+    color: $white;
+  }
+
+  &__title {
+    margin-bottom: $space-lg;
+  }
+
+  &__description {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: $light-white;
+    margin-top: auto; // Push to bottom on desktop
+  }
+
+  &__form {
+    @include respond-to(desktop) {
+      flex: 0 0 65%;
+      order: 1; // Left column on desktop
+    }
+
+    // CF7 Form styling
+    .wpcf7 {
+      width: 100%;
+
+      form {
         width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
+      }
+
+      .wpcf7-form-control-wrap {
+        width: 100%;
+        display: block;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      select,
+      textarea {
+        width: 100%;
+        background-color: $white;
+        border: none;
+        padding: $space-sm $space-lg !important;
+        margin-bottom: $space-lg;
+        border-radius: 0;
+        font-size: 1rem;
+        color: $black;
+
+        &::placeholder {
+          color: rgba($black, 0.5);
+        }
+      }
+
+      // Add red asterisk for required fields
+      .wpcf7-form label span {
+        color: $red;
+      }
+
+      // Form field layout - labels and inputs
+      label {
+        display: block;
+        margin-bottom: $space-sm;
+        color: $white;
+        font-size: 1rem;
+      }
+
+      // Two-column layout for name and email
+      .contact-form__row {
+        display: flex;
+        flex-direction: column;
+
+        @include respond-to(desktop) {
+          flex-direction: row;
+          gap: $space-md;
+        }
+
+        & > p {
+          flex: 1;
+          margin-bottom: 0;
+        }
+      }
+
+      // Custom checkbox styling
+      .wpcf7-acceptance {
+        .wpcf7-list-item {
+          margin: 0;
+          display: flex;
+          align-items: flex-start;
+
+          label {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0;
+          }
+
+          input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: $space-sm;
+            flex-shrink: 0;
+            width: auto;
+            accent-color: $red;
+          }
+
+          .wpcf7-list-item-label {
+            color: $light-white;
+            line-height: 1.5;
+          }
+        }
+      }
+      .contact-form__submit {
+        margin-top: $space-lg;
       }
     }
   }

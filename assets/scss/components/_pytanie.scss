@@ -1,0 +1,26 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+// Ask Question Section
+.ask-question {
+  padding: 100px 0;
+  background-image: url("../images/dude-light-left.svg");
+  background-position: 90% center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  .section-label__text {
+    color: $red;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: $space-sm;
+  }
+  a.button {
+    margin-top: $space-sm !important;
+  }
+
+  &__description {
+    @include text-style;
+  }
+}

@@ -1,0 +1,342 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.porownywarka-table-layout {
+    padding: 50px 0;
+      @include respond-to(desktop) {
+    padding: 50px 0 100px;
+  }
+   .container {
+      display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $space-xl;
+ 
+
+
+
+  @include respond-to(tablet) {
+   
+  
+  }
+   }
+}
+
+.porownywarka-header {
+ 
+}
+
+.empty-compare-state {
+  display: flex;
+  flex-direction: column;
+  gap: $space-sm;
+  justify-content: flex-start;
+  align-items: flex-start;
+  background-color: $white;
+  width: 100%;
+  .breadcrumbs {
+    margin-bottom: $space-sm !important;
+  }
+
+}
+
+// Główna tabela porównawcza z horizontal scroll
+.compare-table {
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  min-width: 100%;
+
+  // Webkit scrollbar styling
+  &::-webkit-scrollbar {
+    height: $space-xs;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $beige;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $gray;
+    border-radius: 4px;
+
+    &:hover {
+      background: darken($gray, 10%);
+    }
+  }
+
+  // Firefox scrollbar
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}
+
+// Wspólne style dla wierszy tabeli
+.products-table-row,
+.attribute-table-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  min-width: 800px; // Minimum width to ensure proper layout
+
+  @include respond-to(desktop) {
+    grid-template-columns: repeat(4, 1fr);
+    min-width: 900px;
+  }
+}
+
+// Wiersz z produktami
+.products-table-row {
+    border: 1px solid $gray;
+
+  .row-label-cell {
+    padding: $space-lg;
+    background: $white;
+    
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+
+    .compare-differents {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: $space-xs;
+
+      .point {
+        width: 15px;
+        height: 15px;
+        background-color: $red;
+        border-radius: 50%;
+
+        @include respond-to(mobile) {
+          width: 12px;
+          height: 12px;
+        }
+      }
+
+      p {
+        @include respond-to(mobile) {
+          font-size: 0.85rem;
+        }
+      }
+    }
+
+    h2 {
+      font-size: 1.3em;
+
+      @include respond-to(tablet) {
+        font-size: 1.1em;
+      }
+
+      @include respond-to(mobile) {
+        font-size: 1em;
+      }
+    }
+
+    span {
+      font-weight: 700;
+      color: $red;
+      font-size: 1.1rem;
+
+      @include respond-to(tablet) {
+        font-size: 1rem;
+      }
+
+      @include respond-to(mobile) {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+
+// Komórka produktu w tabeli
+.product-table-cell {
+  border-left: 1px solid $gray;
+  background: $white;
+  position: relative;
+ 
+
+  &:last-child {
+    border-right: none;
+  }
+}
+
+// Placeholder dla pustej kolumny produktu
+.add-product-placeholder {
+  padding: $space-md $space-sm;
+  text-align: center;
+  min-height: 200px;
+  height: 100%;
+  @include flex-center;
+
+  @include respond-to(tablet) {
+    padding: $space-sm $space-xs;
+    min-height: 150px;
+  }
+
+  @include respond-to(mobile) {
+    padding: $space-sm $space-xs;
+    min-height: 120px;
+  }
+
+  .add-product-large {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: $light-black;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+      .plus-icon {
+        transform: scale(1.1);
+      }
+    }
+
+    .plus-icon {
+      width: 50px;
+      height: 50px;
+      border: 2px solid currentColor;
+      
+      @include flex-center;
+      font-size: 1.5em;
+      margin: 0 auto $space-xs;
+      transition: all 0.3s ease;
+      color: $light-black;
+
+      @include respond-to(mobile) {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2em;
+      }
+    }
+
+    span {
+      font-weight: 500;
+      color: inherit;
+      font-size: 0.85rem;
+
+      @include respond-to(mobile) {
+        font-size: 0.75rem;
+      }
+    }
+  }
+}
+
+.product-header-compare {
+  position: relative;
+    padding:$space-lg;
+    display: flex;
+    flex-direction: column;
+  .compare-specific-actions {
+    a {
+      line-height: 0;
+      color:$red;
+    }
+    img {
+        width:100%;
+    }
+  }
+
+  .compare-button {
+    display: none;
+  }
+}
+
+// Wiersze z atrybutami
+.attribute-table-row {
+  transition: background-color 0.2s ease;
+    border-left: 1px solid $gray;
+    border-bottom: 1px solid $gray;
+    border-right: 1px solid $gray;
+  &:hover {
+    background-color: $light-red;
+  }
+
+  &.has-differences {
+    .attribute-value.different {
+      color: $red;
+    
+    }
+  }
+}
+
+// Komórka etykiety wiersza
+.row-label-cell {
+  padding: $space-lg;
+  background: $white;
+
+  display: flex;
+  align-items: center;
+
+
+
+  .attribute-name {
+   
+    color: $black;
+    font-size: 1.25rem;
+    line-height: 1.5;
+
+  
+  }
+}
+
+// Komórka wartości atrybutu
+.attribute-value-cell {
+  padding: $space-lg;
+  background: $white;
+  border-left: 1px solid $gray;
+  @include flex-center;
+  text-align: center;
+  min-height: 60px;
+
+
+
+  .attribute-value {
+    font-size: 1rem;
+    line-height: 1.4;
+    color: $light-black;
+    word-break: break-word;
+
+ 
+
+    &:empty::before {
+      content: "—";
+      color: rgba($light-black, 0.3);
+    }
+  }
+}
+
+// Loading state
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    margin: -12px 0 0 -12px;
+    border: 3px solid $gray;
+    border-top: 3px solid $red;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1000;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -5,34 +5,153 @@
 // This is intentionally kept minimal as per user instructions
 // The actual styling for content-product.php will be done separately by the user
 li.product {
-        display: flex;
+  display: flex;
+  flex-direction: column;
+   position: relative;
+  .woocommerce-LoopProduct-link {
+    display: flex;
     flex-direction: column;
- .woocommerce-LoopProduct-link img {
-    height: 355px;
-    object-fit: contain;
-    background-color: $beige;
+  }
+
+  .woocommerce-LoopProduct-link img {
+    height: 300px;
+    object-fit: cover;
     margin-bottom: $space-sm;
     margin-inline: auto;
- }
- .product-top-category {
-    color:$red;
+
+    @include respond-to(desktop) {
+      height: 355px;
+    }
+  }
+
+  .product-top-category {
+    color: $red;
     text-transform: uppercase;
     font-size: 0.875rem;
- }
- .woocommerce-loop-product__title {
-  font-size: 1.25rem;
-  font-weight: 500;
-  line-height: 125%;;
-  color: $black;
-  margin-top:4px;
-  margin-bottom: $space-xs;
-}
-.product-short-excerpt {
-     font-size: 0.875rem;
-     line-height: 150%;
-     color: $black;
-}
-.add_to_cart_button {
+  }
+
+  .woocommerce-loop-product__title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 125%;
+    color: $black;
+    margin-top: 4px;
+    margin-bottom: $space-xs;
+  }
+
+  .product-short-excerpt {
+    font-size: 0.875rem;
+    line-height: 150%;
+    color: $black;
+  }
+
+  .product-card__attributes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $space-xs;
+    margin-top: $space-xs;
+    margin-bottom: $space-xs;
+
+    .product-card__attribute {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      color: $light-black;
+      background-color: $beige;
+      padding: 4px 8px;
+      border-radius: 4px;
+
+      &-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+          width: 12px;
+          height: 12px;
+          margin: 0;
+        }
+
+        &--flag {
+          font-size: 1rem;
+        }
+      }
+
+      &-value {
+        font-weight: 500;
+      }
+    }
+  }
+
+  .price {
+    margin-top: 30px;
+    del {
+      padding-right: 8px;
+    }
+  }
+  .add_to_cart_button {
     margin-top: $space-sm;
-}
+  }
+  .product-card__attributes {
+    margin: $space-xs 0 0 !important;
+    gap: $space-sm !important;
+    .product-card__attribute {
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 0.875rem;
+      background-color: transparent !important;
+      line-height: 150%;
+      img {
+        width: 16px;
+        height: 16px;
+        margin: 0 !important;
+      }
+
+      &-value {
+        color: $red;
+        font-weight: 400 !important;
+        font-size: 0.875rem !important;
+      }
+    }
+  }
+
+  .onsale {
+    position: absolute;
+    background-color: $red;
+    color: $white;
+    font-size: 0.875rem;
+    padding: $space-xs;
+    top: 8px !important;
+    left: 8px !important;
+    width: fit-content;
+    border-radius: 0;
+    min-width: unset !important;
+    min-height: unset !important;
+    line-height: 125% !important;
+    font-weight: 400 !important;
+  }
+  .fav-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+
+    .fav-button {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+
+      img {
+        width: 20px !important;
+        height: auto !important;
+        display: block;
+        pointer-events: none;
+      }
+    }
+  }
 }

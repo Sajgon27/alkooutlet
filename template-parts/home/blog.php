@@ -25,13 +25,13 @@ $blog_query = new WP_Query($blog_args);
     <div class="container" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/dude-light-left.svg' ); ?>'); ">
         <div class="blog-section__header">
             <div class="blog-section__header-left">
-                <div class="blog-section__header-top">
+                <div class="blog-section__header-top section-label">
                     <?php if (file_exists(get_template_directory() . '/assets/icons/blog-home.svg')) : ?>
-                        <div class="blog-section__icon">
+                        
                             <?php echo file_get_contents(get_template_directory() . '/assets/icons/blog-home.svg'); ?>
-                        </div>
+                      
                     <?php endif; ?>
-                    <span class="blog-section__small-title">Butelki z historią</span>
+                    <span class="blog-section__small-title section-label__text">Butelki z historią</span>
                 </div>
                 <h2 class="blog-section__title">HISTORIE ZAPISANE W BUTELKACH</h2>
             </div>
@@ -65,7 +65,7 @@ $blog_query = new WP_Query($blog_args);
                                 }
                                 ?>
                             </div>
-                            <a href="<?php the_permalink(); ?>" class="blog-post__read-more">
+                            <a href="<?php the_permalink(); ?>" class="blog-post__read-more read-more">
                                 Czytaj więcej
                                     <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4 1L9 5L4 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -98,7 +98,7 @@ $blog_query = new WP_Query($blog_args);
                                     }
                                     ?>
                                 </div>
-                                <a href="<?php the_permalink(); ?>" class="blog-post__read-more">
+                                <a href="<?php the_permalink(); ?>" class="blog-post__read-more read-more">
                                     Czytaj więcej
                                     <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M4 1L9 5L4 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
